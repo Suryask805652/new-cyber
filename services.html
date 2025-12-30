@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACKLY — Cyber Security Services</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#04070f;
+  color:#fff;
+}
+
+/* HEADER BASE */
+.header{
+  width:100%;
+  padding:18px 70px;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* LOGO LEFT */
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.header-logo{
+  width:45px;
+}
+
+/* MENU CENTER */
+.header-menu{
+  display:flex;
+  gap:45px;
+}
+
+.header-menu a{
+  text-decoration:none;
+  color:#fff;
+  font-weight:500;
+  transition:.2s;
+}
+
+.header-menu a:hover{
+  color:#33c7ff;
+}
+
+/* LOGIN BUTTON RIGHT */
+.login-btn{
+  background:#00aaff;
+  padding:7px 18px;
+  border-radius:10px;
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  transition:.25s;
+}
+
+.login-btn:hover{
+  background:#33c7ff;
+  box-shadow:0 0 12px #00aaff;
+}
+
+/* MENU ICON FOR MOBILE */
+.header-menu-icon{
+  display:none;
+  font-size:28px;
+  color:#fff;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:950px){
+  .header-menu{display:none;}
+  .login-btn{display:none;}
+  .header-menu-icon{display:block;}
+}
+
+/* PREMIUM MOBILE MENU (MATCHES YOUR IMAGE) */
+/* FULL SCREEN MOBILE MENU */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;        /* FULL SCREEN WIDTH */
+  height: 100vh;      /* FULL SCREEN HEIGHT */
+  background: rgba(0, 0, 0, 0.85); /* Dark glass effect */
+  backdrop-filter: blur(16px);
+  padding: 80px 40px;
+  transform: translateX(-100%);   /* Hidden Left */
+  transition: 0.40s ease;
+  z-index: 999999;
+}
+
+/* When active, slide in from left */
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+/* Close Button */
+.close-btn {
+  font-size: 36px;
+  color: #fff;
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  cursor: pointer;
+}
+
+/* Mobile Menu Links */
+.mobile-menu a {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 22px 0;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.5px;
+}
+
+.mobile-menu a:hover {
+  color: #00aaff;
+  transform: translateX(5px);
+  transition: 0.2s;
+  text-shadow: 0 0 12px #00aaff;
+}
+
+/* Hide login button on mobile screens */
+@media(max-width: 950px) {
+  .login-btn {
+    display: none !important;
+  }
+}
+
+/* HERO SECTION */
+.hero{
+  width:100%;
+  height:80vh;
+  background:url('Future.webp') center/cover no-repeat fixed;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:100px;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.65);
+}
+
+.hero-content{
+  position:relative;
+  z-index:10;
+  max-width:900px;
+}
+
+.hero h1{
+  font-size:56px;
+  font-weight:800;
+}
+
+.hero p{
+  font-size:18px;
+  margin-top:15px;
+  opacity:0.8;
+}
+
+
+
+/* SERVICES SECTION */
+.services{
+  padding:80px 70px;
+}
+
+.services-title{
+  text-align:center;
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:40px;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:30px;
+}
+
+.service-card{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:15px;
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:.3s;
+}
+
+.service-card:hover{
+  background:rgba(255,255,255,0.15);
+  transform:translateY(-10px);
+  box-shadow:0 0 18px #00aaff55;
+}
+
+.service-card i{
+  font-size:40px;
+  margin-bottom:20px;
+  color:#00aaff;
+}
+
+.service-card h3{
+  margin-bottom:10px;
+  font-size:22px;
+}
+
+.service-card p{
+  opacity:0.75;
+}
+
+
+
+/* FOOTER */
+.footer{
+  margin-top:60px;
+  padding:60px 20px;
+  background:#01040a;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo img{
+  width:50px;
+}
+
+.footer-logo h3{
+  margin-top:10px;
+  color:#33bbff;
+  font-size:26px;
+  font-weight:700;
+}
+
+.footer-links{
+  margin-top:25px;
+}
+
+.footer-links a{
+  margin:0 15px;
+  color:#fff;
+  opacity:0.7;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.footer-links a:hover{
+  opacity:1;
+  color:#00aaff;
+}
+
+.footer-social{
+  margin-top:20px;
+}
+
+.footer-social i{
+  margin:0 10px;
+  font-size:22px;
+  color:#33bbff;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.footer-social i:hover{
+  color:#00c8ff;
+  transform:scale(1.2);
+}
+
+.footer p{
+  margin-top:25px;
+  opacity:0.4;
+}
+
+
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .menu-icon{display:block;}
+  .hero h1{font-size:40px;}
+  .services-title{font-size:34px;}
+}
+/* TABLET VIEW — MAX WIDTH 950px */
+@media (max-width: 950px) {
+
+  .header {
+    padding: 15px 35px;
+  }
+
+  .header-left h2 {
+    font-size: 22px;
+  }
+
+  .header-menu { display: none; }
+  .login-btn { display: none; }
+  .header-menu-icon { display: block; }
+
+  .hero {
+    height: 65vh;
+    padding-top: 120px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .services {
+    padding: 60px 35px;
+  }
+
+  .services-title {
+    font-size: 34px;
+  }
+
+  .service-card {
+    padding: 25px;
+  }
+
+  .footer {
+    padding: 50px 20px;
+  }
+}
+@media (max-width: 768px) {
+
+  .header {
+    padding: 14px 25px;
+  }
+
+  .header-logo {
+    width: 38px;
+  }
+
+  .header-left h2 {
+    font-size: 20px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    line-height: 45px;
+  }
+
+  .hero p {
+    font-size: 15px;
+    padding: 0 10px;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .services {
+    padding: 50px 25px;
+  }
+
+  .footer-logo img {
+    width: 45px;
+  }
+
+  .footer-logo h3 {
+    font-size: 22px;
+  }
+
+  .footer-links a {
+    display: block;
+    margin: 12px 0;
+  }
+}
+@media (max-width: 480px) {
+
+  .header {
+    padding: 12px 18px;
+  }
+
+  .header-left h2 {
+    font-size: 18px;
+  }
+
+  .header-logo {
+    width: 32px;
+  }
+
+  .hero {
+    height: 60vh;
+    padding-top: 130px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .services-title {
+    font-size: 28px;
+  }
+
+  .service-card {
+    padding: 22px;
+  }
+
+  .service-card i {
+    font-size: 32px;
+  }
+
+  .service-card h3 {
+    font-size: 20px;
+  }
+
+  .footer {
+    padding: 40px 10px;
+  }
+
+  .footer-logo h3 {
+    font-size: 20px;
+  }
+
+  .footer-social i {
+    font-size: 20px;
+  }
+
+  .footer-links a {
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- HEADER -->
+<header class="header">
+
+  <div class="header-left">
+    <img src="logo1.webp" class="header-logo">
+    <h2>STACKLY</h2>
+  </div>
+
+  <nav class="header-menu">
+    <a href="index.html">Home</a>
+    <a href="solution.html">Solution</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="Contact.html">Contact</a>
+  </nav>
+
+  <a href="#" class="login-btn">LOGIN</a>
+
+  <i class="fa-solid fa-bars header-menu-icon" id="menuOpen"></i>
+
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <i class="fa-solid fa-xmark close-btn" id="menuClose"></i>
+
+  <a href="index.html">Home</a>
+  <a href="solution.html">Solution</a>
+  <a href="services.html">Services</a>
+  <a href="Dashboard.html">Dashboard</a>
+  <a href="Contact.html">Contact</a>
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Cyber Security Services</h1>
+    <p>Enterprise-grade protection powered by AI, Zero Trust, Cloud Defense & Advanced Threat Detection.</p>
+  </div>
+</section>
+
+
+
+<!-- SERVICES SECTION -->
+<section class="services">
+  <h2 class="services-title">Our Professional Services</h2>
+
+  <div class="service-grid">
+
+    <div class="service-card">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3>Penetration Testing</h3>
+      <p>Identify vulnerabilities in your systems through simulated cyberattacks.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-network-wired"></i>
+      <h3>Network Security</h3>
+      <p>Safeguard your networks with advanced firewall, IDS & zero-trust controls.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-cloud"></i>
+      <h3>Cloud Security</h3>
+      <p>Cloud-native protection with AI analytics, IAM, encryption & monitoring.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-lock"></i>
+      <h3>Endpoint Protection</h3>
+      <p>Real-time malware detection, EDR, and automated incident response.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <h3>Threat Intelligence</h3>
+      <p>Monitor global threats, dark-web leaks & targeted attack surfaces.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-shield"></i>
+      <h3>Incident Response</h3>
+      <p>Immediate response to cyberattacks with 24/7 SOC support.</p>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-logo">
+    <img src="logo1.webp">
+    <h3>STACKLY Cyber Security</h3>
+  </div>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="home2.html">Home2</a>
+    <a href="Solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="Contact.html">Contact</a>
+    <a href="login.html">login</a>
+  </div>
+
+  <div class="footer-social">
+    <a href="404.html"><i class="fab fa-facebook"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin"></i></a>
+  </div>
+
+  <p>© 2025 STACKLY — All Rights Reserved</p>
+
+</footer>
+
+
+
+<script>
+
+// Sticky navbar
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".navbar");
+  nav.style.background = window.scrollY > 30 ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.4)";
+});
+
+// Mobile menu
+// Open menu
+document.getElementById("menuOpen").onclick = () => {
+  document.getElementById("mobileMenu").classList.add("active");
+};
+
+// Close menu
+document.getElementById("menuClose").onclick = () => {
+  document.getElementById("mobileMenu").classList.remove("active");
+};
+
+</script>
+
+</body>
+</html>

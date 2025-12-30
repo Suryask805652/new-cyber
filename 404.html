@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Stackly Cyber Security</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron', sans-serif;
+}
+
+body{
+    height:100vh;
+    background:#020202;
+    overflow:hidden;
+    position:relative;
+}
+
+/* ==========================
+   CYBER GRID BACKGROUND
+========================== */
+.grid{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(#0af 1px, transparent 1px),
+               linear-gradient(90deg, #0af 1px, transparent 1px);
+    background-size:40px 40px;
+    opacity:0.08;
+    animation:gridMove 20s linear infinite;
+}
+
+@keyframes gridMove{
+    0% { background-position:0 0; }
+    100% { background-position:200px 200px; }
+}
+
+/* ==========================
+   FLOATING PARTICLES
+========================== */
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#0ff;
+    border-radius:50%;
+    opacity:0.7;
+    animation: float 5s infinite linear;
+}
+
+@keyframes float{
+    from{ transform:translateY(0); opacity:1; }
+    to{ transform:translateY(-120vh); opacity:0; }
+}
+
+/* ==========================
+   SCANNER LINE ANIMATION
+========================== */
+.scan-line{
+    position:absolute;
+    top:0;
+    width:100%;
+    height:2px;
+    background:#0ff;
+    box-shadow:0 0 15px #0ff;
+    animation:scan 5s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes scan{
+    0%{ top:0; }
+    100%{ top:100%; }
+}
+
+/* ==========================
+   404 CONTAINER
+========================== */
+.container{
+    position:relative;
+    z-index:20;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#0ff;
+    text-align:center;
+}
+
+/* Warning Logo */
+.warning-icon{
+    font-size:65px;
+    color:#ff0033;
+    text-shadow:0 0 25px #ff0033;
+    animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+    0%{ transform:scale(1); opacity:1; }
+    50%{ transform:scale(1.25); opacity:0.4; }
+    100%{ transform:scale(1); opacity:1; }
+}
+
+/* Glitch 404 text */
+h1{
+    font-size:120px;
+    font-weight:700;
+    margin-top:20px;
+    text-shadow:0 0 20px #0ff;
+    animation:glitch 2s infinite;
+}
+
+@keyframes glitch{
+    0%{ text-shadow:4px 4px #f0f, -4px -4px #0ff; }
+    50%{ text-shadow:-4px 4px #f0f, 4px -4px #0ff; }
+    100%{ text-shadow:4px 4px #f0f, -4px -4px #0ff; }
+}
+
+p{
+    font-size:20px;
+    margin-top:-10px;
+    letter-spacing:2px;
+    color:#cfffff;
+}
+
+/* Back Button */
+.back-btn{
+    margin-top:35px;
+    padding:12px 36px;
+    background:#0ff;
+    color:#000;
+    text-decoration:none;
+    font-weight:700;
+    border-radius:10px;
+    font-size:20px;
+    transition:0.25s;
+    box-shadow:0 0 18px #0ff;
+}
+
+.back-btn:hover{
+    transform:scale(1.1);
+    background:#00eaff;
+    box-shadow:0 0 30px #00eaff;
+}
+
+/* ==========================
+   MOBILE RESPONSIVE
+========================== */
+@media(max-width:480px){
+    h1{ font-size:80px; }
+    p{ font-size:14px; }
+    .warning-icon{ font-size:50px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cyber Grid -->
+<div class="grid"></div>
+
+<!-- Scanner Line -->
+<div class="scan-line"></div>
+
+<!-- Floating particles -->
+<div class="particles">
+    <script>
+        for(let i=0; i<50; i++){
+            let p = document.createElement("span");
+            p.style.left = Math.random()*100 + "%";
+            p.style.top = Math.random()*100 + "%";
+            p.style.animationDuration = 3 + Math.random()*3 + "s";
+            document.querySelector(".particles").appendChild(p);
+        }
+    </script>
+</div>
+
+<div class="container">
+    <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
+
+    <h1>404</h1>
+    <p>Critical Error: Page Not Found</p>
+
+    <a href="index.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Return to Home
+    </a>
+</div>
+
+</body>
+</html>

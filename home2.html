@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACKLY — Cybersecurity Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", sans-serif;
+}
+
+body{
+  background:#02060f;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ======= Animated Background ======= */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+  background:url('Future.webp') no-repeat center/cover;
+  animation:zoom 25s linear infinite alternate;
+}
+
+@keyframes zoom{
+  0%{transform:scale(1);}
+  100%{transform:scale(1.1);}
+}
+
+/* Floating neon particles */
+.particle{
+  position:absolute;
+  width:3px;
+  height:20px;
+  background:#00fff2;
+  opacity:0.2;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  0%{transform:translateY(-100vh);}
+  100%{transform:translateY(100vh);}
+}
+
+/* ===== STACKLY HEADER STYLE ===== */
+.stackly-header{
+    width:100%;
+    padding:18px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:9999;
+}
+
+/* LEFT SECTION (LOGO + NAME) */
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.stackly-logo{
+    width:42px;
+    height:auto;
+}
+
+/* STACKLY TEXT */
+.header-left h2{
+    font-size:22px;
+    font-weight:700;
+    color:white;
+    letter-spacing:1px;
+}
+
+/* CENTER MENU */
+.header-nav ul{
+    display:flex;
+    gap:42px;
+    list-style:none;
+}
+
+.header-nav ul li a{
+    text-decoration:none;
+    font-size:16px;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+.header-nav ul li a:hover{
+    color:#00aaff;
+}
+
+/* RIGHT LOGIN BUTTON */
+.login-btn{
+    padding:10px 26px;
+    background:#009dff;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-btn:hover{
+    background:#00b7ff;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    .header-nav{display:none;}
+}
+
+/* ======= HERO SECTION ======= */
+.hero{
+  width:100%;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:0 20px;
+  margin-top:50px;
+}
+
+.hero h1{
+  font-size:48px;
+  text-shadow:0 0 12px #00f7ff;
+}
+
+.hero p{
+  font-size:18px;
+  margin:20px 0;
+  max-width:650px;
+  opacity:0.85;
+}
+
+.hero button{
+  padding:12px 30px;
+  border:none;
+  background:#00f7ff;
+  color:#000;
+  font-weight:700;
+  border-radius:10px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.hero button:hover{
+  background:#03e6e6;
+  box-shadow:0 0 15px #00f7ff;
+}
+
+/* ======= FEATURES ======= */
+.features{
+  padding:70px 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+  gap:25px;
+}
+
+.feature-box{
+  background:rgba(0,0,0,0.55);
+  padding:25px;
+  border:1px solid rgba(0,255,255,0.2);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  text-align:center;
+  transition:.3s;
+}
+
+.feature-box:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 20px rgba(0,255,255,0.3);
+}
+
+.feature-box h3{
+  color:#00f7ff;
+  margin-bottom:10px;
+}
+
+/* ===== STACKLY FOOTER ===== */
+.stackly-footer{
+    width:100%;
+    padding:60px 20px;
+    background:#04080f;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.05);
+    margin-top:60px;
+}
+
+/* Logo */
+.footer-logo{
+    width:70px;
+    height:auto;
+    margin-bottom:12px;
+    filter:drop-shadow(0 0 8px #00c6ff);
+}
+
+/* Title */
+.stackly-footer h2{
+    color:#00aaff;
+    font-size:24px;
+    font-weight:600;
+    margin-bottom:18px;
+}
+
+/* Menu Links */
+.footer-menu{
+    display:flex;
+    justify-content:center;
+    gap:35px;
+    margin-bottom:20px;
+}
+
+.footer-menu a{
+    color:#e8e8e8;
+    font-size:15px;
+    font-weight:500;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.footer-menu a:hover{
+    color:#00aaff;
+}
+
+/* Social Icons */
+.footer-social{
+    display:flex;
+    justify-content:center;
+    gap:22px;
+    margin-bottom:20px;
+}
+
+.footer-social i{
+    font-size:20px;
+    color:#e8e8e8;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.footer-social i:hover{
+    color:#00aaff;
+    text-shadow:0 0 10px #00aaff;
+}
+
+/* Copyright */
+.copy{
+    color:#aaa;
+    font-size:14px;
+    opacity:0.7;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width:480px){
+  .hero h1{font-size:32px;}
+  nav ul{display:none;}
+}
+/* MOBILE MENU (NO SHAKING) */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* HIDDEN */
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    transition: right 0.35s ease-in-out; /* Smooth Slide */
+    z-index: 9999;
+}
+
+/* When active → visible */
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 32px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.mobile-link {
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.mobile-link:hover {
+    color: #1e90ff;
+    transform: scale(1.05);
+}
+
+/* MOBILE MEDIA QUERY */
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 100%;
+        padding: 20px 20px;
+    }
+    .mobile-link {
+        font-size: 20px;
+        padding: 16px 0;
+    }
+}
+
+/* Submenu */
+.mobile-submenu{
+    display:none;
+    flex-direction:column;
+    margin-left:15px;
+}
+
+.mobile-submenu a{
+    font-size:20px;
+    padding:10px 0;
+}
+/* Hide login button on mobile */
+@media(max-width:768px){
+    .login-btn{
+        display:none !important;
+    }
+}
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   Mobile (0–480px)
+   Tablet (481px–1024px)
+   Desktop (1025px+)
+============================================ */
+
+/* ========== MOBILE (max-width: 480px) ========== */
+@media (max-width: 480px){
+
+    /* Header */
+    .stackly-header{
+        padding:12px 20px;
+    }
+    .header-nav{
+        display:none !important;
+    }
+    .menu-icon{
+        display:block !important;
+        font-size:26px;
+    }
+    .login-btn{
+        display:none !important;
+    }
+
+    /* Logo */
+    .stackly-logo{
+        width:34px;
+    }
+    .header-left h2{
+        font-size:18px;
+    }
+
+    /* Hero */
+    .hero h1{
+        font-size:30px;
+        line-height:38px;
+    }
+    .hero p{
+        font-size:15px;
+        max-width:90%;
+    }
+
+    /* Feature boxes */
+    .features{
+        grid-template-columns:1fr;
+        padding:40px 20px;
+    }
+
+    /* Extra features */
+    .extra-features{
+        grid-template-columns:1fr;
+        padding:40px 20px;
+    }
+
+    /* Footer */
+    .footer-menu{
+        flex-direction:column;
+        gap:12px;
+    }
+    .footer-social{
+        gap:16px;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu{
+        width:100%;
+        padding:30px 20px;
+    }
+    .mobile-link{
+        font-size:20px;
+        padding:16px 0;
+    }
+}
+
+
+
+/* ========== TABLET (481px–1024px) ========== */
+@media (min-width: 481px) and (max-width: 1024px){
+
+    /* Header */
+    .stackly-header{
+        padding:14px 30px;
+    }
+    .header-nav{
+        display:none !important;
+    }
+    .menu-icon{
+        display:block !important;
+        font-size:30px;
+    }
+    .login-btn{
+        display:none !important;
+    }
+
+    /* Logo */
+    .stackly-logo{
+        width:40px;
+    }
+    .header-left h2{
+        font-size:20px;
+    }
+
+    /* Hero */
+    .hero h1{
+        font-size:38px;
+        line-height:48px;
+    }
+    .hero p{
+        font-size:17px;
+        max-width:600px;
+    }
+
+    /* Feature grid */
+    .features{
+        padding:60px 30px;
+        grid-template-columns:repeat(2, 1fr);
+    }
+
+    .extra-features{
+        padding:60px 30px;
+        grid-template-columns:repeat(2, 1fr);
+    }
+
+    /* Footer */
+    .footer-menu{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    /* Mobile menu */
+    .mobile-menu{
+        width:70%;
+        padding:40px;
+    }
+    .mobile-link{
+        font-size:22px;
+        padding:20px 0;
+    }
+}
+
+
+
+/* ========== DESKTOP (1025px+) ========== */
+@media (min-width: 1025px){
+
+    /* Desktop Navigation */
+    .header-nav{
+        display:flex !important;
+    }
+    .menu-icon{
+        display:none !important;
+    }
+    .login-btn{
+        display:inline-block !important;
+    }
+
+    /* Hero */
+    .hero h1{
+        font-size:52px;
+    }
+    .hero p{
+        font-size:20px;
+        max-width:700px;
+    }
+
+    /* Features */
+    .features{
+        padding:70px 50px;
+        grid-template-columns:repeat(4, 1fr);
+    }
+
+    .extra-features{
+        padding:70px 50px;
+        grid-template-columns:repeat(4, 1fr);
+    }
+
+    /* Footer */
+    .footer-menu{
+        gap:40px;
+    }
+}
+
+</style>
+
+<!-- ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+
+<!-- Animated Background -->
+<div class="bg"></div>
+
+<!-- Floating particles -->
+<script>
+for(let i=0;i<15;i++){
+  const p=document.createElement("div");
+  p.classList.add("particle");
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration = (6 + Math.random()*6)+"s";
+  p.style.height = (10 + Math.random()*25)+"px";
+  document.body.appendChild(p);
+}
+
+</script>
+
+<!-- HEADER -->
+<!-- ===== HEADER START ===== -->
+<header class="stackly-header">
+    <div class="header-left">
+        <img src="logo1.webp" class="stackly-logo" alt="Stackly Logo">
+        <h2>STACKLY</h2>
+    </div>
+
+    <nav class="header-nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="solution.html">Solution</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <button class="login-btn" onclick="window.location.href='login.html'">LOGIN</button>
+    <!-- Mobile Menu Icon -->
+<i class="fa-solid fa-bars menu-icon" id="openMenu" style="font-size:28px; cursor:pointer; color:white; display:none;"></i>
+
+</header>
+<!-- ===== HEADER END ===== -->
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+    <i class="fa-solid fa-xmark close-btn" id="closeMenu"></i>
+
+    <!-- Home with submenu -->
+    <div class="mobile-dropdown">
+        <a href="#" class="mobile-link" id="homeToggle">Home <i class="fa-solid fa-chevron-down"></i></a>
+        <div class="mobile-submenu" id="homeSubmenu">
+            <a href="index.html" class="mobile-link">Home 1</a>
+        </div>
+    </div>
+
+    <a href="solution.html" class="mobile-link">Solution</a>
+    <a href="services.html" class="mobile-link">Services</a>
+    <a href="dashboard.html" class="mobile-link">Dashboard</a>
+    <a href="contact.html" class="mobile-link">Contact</a>
+    <a href="login.html" class="mobile-link">Login</a>
+</div>
+
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h1>Elite Cybersecurity Protection</h1>
+  <p>STACKLY delivers next-gen cyber defense systems for ethical hackers, security teams, and enterprises looking to secure their digital world.</p>
+  <button onclick="window.location.href='solution.html'">Get Started</button>
+</section>
+<!-- ===== EXTRA FEATURES & ANIMATED BACKGROUND ===== -->
+<style>
+/* ===== Additional Animated Background Elements ===== */
+.ring{
+  position:absolute;
+  border:2px solid #00fff2;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  top:50%;
+  left:50%;
+  opacity:0.1;
+  animation:spin 20s linear infinite;
+}
+
+.ring:nth-child(2){width:80px; height:80px; animation-duration:25s;}
+.ring:nth-child(3){width:120px; height:120px; animation-duration:30s;}
+
+@keyframes spin{
+  0%{transform:translate(-50%, -50%) rotate(0deg);}
+  100%{transform:translate(-50%, -50%) rotate(360deg);}
+}
+
+/* ===== Floating Binary Code ===== */
+.binary{
+  position:absolute;
+  font-size:12px;
+  color:#00fff2;
+  opacity:0.15;
+  white-space:nowrap;
+  animation:fallbin linear infinite;
+}
+
+@keyframes fallbin{
+  0%{transform:translateY(-100vh);}
+  100%{transform:translateY(100vh);}
+}
+
+/* ===== Extra Features Section ===== */
+.extra-features{
+  padding:70px 40px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.extra-box{
+  background:rgba(0,0,0,0.55);
+  padding:25px;
+  border:1px solid rgba(0,255,255,0.2);
+  backdrop-filter:blur(10px);
+  border-radius:12px;
+  text-align:center;
+  transition:.3s;
+}
+
+.extra-box:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 20px rgba(0,255,255,0.3);
+}
+
+.extra-box h3{
+  color:#00f7ff;
+  margin-bottom:10px;
+}
+</style>
+
+<!-- RINGS -->
+<div class="ring"></div>
+<div class="ring"></div>
+<div class="ring"></div>
+
+<!-- FLOATING BINARY -->
+<script>
+const binaryStrings = ["010101","101010","110011","001100"];
+for(let i=0;i<30;i++){
+  const b=document.createElement("div");
+  b.classList.add("binary");
+  b.style.left=Math.random()*100+"%";
+  b.style.top=Math.random()*100+"%";
+  b.style.animationDuration=(5+Math.random()*10)+"s";
+  b.textContent=binaryStrings[Math.floor(Math.random()*binaryStrings.length)];
+  document.body.appendChild(b);
+}
+// Show menu icon on mobile
+const menuIcon = document.getElementById("openMenu");
+const navLinks = document.querySelector(".header-nav");
+if(window.innerWidth <= 768){
+    menuIcon.style.display = "block";
+}
+
+// Mobile menu open/close
+const openMenu = document.getElementById("openMenu");
+const closeMenu = document.getElementById("closeMenu");
+const mobileMenu = document.getElementById("mobileMenu");
+
+openMenu.addEventListener("click", () => {
+    mobileMenu.style.right = "0";
+});
+
+closeMenu.addEventListener("click", () => {
+    mobileMenu.style.right = "-100%";
+});
+
+// Toggle Home submenu
+const homeToggle = document.getElementById("homeToggle");
+const homeSubmenu = document.getElementById("homeSubmenu");
+
+homeToggle.addEventListener("click", (e)=>{
+    e.preventDefault();
+    homeSubmenu.style.display = homeSubmenu.style.display === "flex" ? "none" : "flex";
+});
+</script>
+
+<!-- EXTRA FEATURES SECTION -->
+<section class="extra-features">
+  <div class="extra-box">
+    <h3>Threat Intelligence</h3>
+    <p>Proactive analysis of emerging cyber threats worldwide.</p>
+  </div>
+
+  <div class="extra-box">
+    <h3>Cloud Security</h3>
+    <p>Secure cloud infrastructure with multi-layer defense systems.</p>
+  </div>
+
+  <div class="extra-box">
+    <h3>Incident Response</h3>
+    <p>Rapid response to security breaches and incident management.</p>
+  </div>
+
+  <div class="extra-box">
+    <h3>Dark Web Monitoring</h3>
+    <p>Continuous monitoring for stolen data & compromised credentials.</p>
+  </div>
+</section>
+<!-- UPDATED FEATURES SECTION -->
+<section class="features">
+  <div class="feature-box">
+    <h3>Real-time Threat Detection</h3>
+    <p>Monitor systems instantly for malware, ransomware, phishing, and network intrusions.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>AI-Powered Firewall</h3>
+    <p>Adaptive firewall protection using AI algorithms to detect and block advanced threats.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Data Encryption & Privacy</h3>
+    <p>Military-grade encryption ensures data integrity and privacy across all channels.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Penetration & Vulnerability Testing</h3>
+    <p>Simulate attacks to identify vulnerabilities and strengthen your security posture.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Threat Intelligence</h3>
+    <p>Stay ahead with insights from global cyber threat research and attack patterns.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Incident Response</h3>
+    <p>Rapid response to security breaches, with real-time alerts and mitigation strategies.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Cloud & Endpoint Security</h3>
+    <p>Protect cloud environments, endpoints, and remote devices from unauthorized access.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Dark Web Monitoring</h3>
+    <p>Continuous scanning of the dark web to detect stolen credentials or sensitive data leaks.</p>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="features">
+  <div class="feature-box">
+    <h3>Real-time Threat Scan</h3>
+    <p>Instant monitoring & detection of cyber-attacks.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>AI Firewall Security</h3>
+    <p>Next-level firewall protection powered by AI.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Data Encryption</h3>
+    <p>End-to-end encrypted data protection.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Penetration Testing</h3>
+    <p>Advanced vulnerability & penetration testing tools.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="stackly-footer">
+
+    <!-- Logo -->
+    <img src="logo1.webp" class="footer-logo" alt="STACKLY Logo">
+
+    <!-- Title -->
+    <h2>STACKLY Cyber Security</h2>
+
+    <!-- Menu -->
+    <div class="footer-menu">
+        <a href="index.html">Home</a>
+        <a href="index.html">Home1</a>
+    <a href="Solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard,html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+    <a href="Login.html">Login</a>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="footer-social">
+        <a href="404.html"><i class="fab fa-facebook"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin"></i></a>
+        </div>
+
+    <!-- Copyright -->
+    <p class="copy">© 2025 STACKLY — All Rights Reserved</p>
+</footer>
+
+
+</body>
+</html>

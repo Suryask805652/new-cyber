@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACKLY — Cyber Security</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#04070f;
+  color:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+  width:100%;
+  padding:20px 70px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:999;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:26px;
+  font-weight:700;
+}
+
+.logo-icon{
+  width:42px;
+}
+
+.nav-links{
+  display:flex;
+  gap:35px;
+}
+
+.nav-links a{
+  text-decoration:none;
+  color:#fff;
+  font-weight:500;
+  transition:.2s;
+  font-size: 17px;
+}
+
+.nav-links a:hover{
+  color:#33bbff;
+}
+
+.login-btn{
+  padding:10px 22px;
+  background:#00aaff;
+  border-radius:10px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  color:#000;
+  transition:.2s;
+}
+
+.login-btn:hover{
+  background:#0088dd;
+}
+
+/* Dropdown base */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hidden menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #0b0f14;
+  min-width: 160px;
+  border: 1px solid #1d2833;
+  border-radius: 6px;
+  padding: 10px 0;
+  z-index: 10;
+}
+
+/* Dropdown links */
+.dropdown-content a {
+  display: block;
+  padding: 10px 20px;
+  color: #dce3ea;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.dropdown-content a:hover {
+  background: #1a2430;
+  color: #00c8ff;
+}
+
+/* SHOW dropdown when hovered */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Styling Home button */
+.drop-btn {
+  color: #fff;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+
+/* MOBILE MENU ICON */
+.menu-icon{
+  display:none;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* MOBILE MENU (FULL SCREEN + ANIME BG) */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: url('cyber-bg.gif') no-repeat center center/cover; /* anime bg */
+  padding: 40px 30px;
+  backdrop-filter: blur(12px);
+  transition: 0.35s ease-in-out;
+  z-index: 9999;
+
+  /* Optional dark overlay */
+  display: flex;
+  flex-direction: column;
+  background-blend-mode: overlay;
+  background-color: rgba(0,0,0,0.75);
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+/* Mobile menu links */
+.mobile-menu a {
+  color: #fff;
+  font-size: 22px;
+  padding: 20px 0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  font-weight: 500;
+}
+
+.mobile-menu a:hover {
+  color: #00aaff;
+}
+
+/* Close button */
+.close-btn {
+  font-size: 32px;
+  color: #fff;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+
+/* Show menu icon on mobile */
+@media(max-width: 900px) {
+  .menu-icon {
+    display: block;
+  }
+}
+
+/* HERO SECTION */
+.hero{
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:100px;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:relative;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.68);
+}
+
+.hero-content{
+  position:relative;
+  max-width:900px;
+  z-index:3;
+  animation:fadeUp 1.5s ease forwards;
+  opacity:0;
+}
+
+@keyframes fadeUp{
+  0%{opacity:0; transform:translateY(40px);}
+  100%{opacity:1; transform:translateY(0);}
+}
+
+.hero-title{
+  font-size:58px;
+  font-weight:800;
+  text-shadow:0 0 20px #00aaff;
+}
+
+.hero-desc{
+  font-size:18px;
+  margin-top:15px;
+  opacity:0.85;
+}
+
+.cta-btn{
+  margin-top:25px;
+  background:#00aaff;
+  padding:14px 32px;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+  color:#000;
+  transition:.2s;
+}
+
+.cta-btn:hover{
+  box-shadow:0 0 18px #00aaff;
+  background:#0088dd;
+}
+
+/* SERVICES */
+.services{
+  width:100%;
+  padding:80px 70px;
+  background:#050c18;
+}
+
+.section-title{
+  font-size:40px;
+  font-weight:700;
+  text-align:center;
+  margin-bottom:50px;
+  color:#00aaff;
+  text-shadow:0 0 10px #005577;
+}
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:30px;
+}
+
+.service-card{
+  background:rgba(255,255,255,0.04);
+  padding:30px;
+  border-radius:15px;
+  backdrop-filter:blur(6px);
+  transition:.3s;
+  border:1px solid rgba(255,255,255,0.07);
+}
+
+.service-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 18px #00aaff;
+  background:rgba(255,255,255,0.10);
+}
+
+.service-card i{
+  font-size:40px;
+  margin-bottom:15px;
+  color:#00aaff;
+}
+
+/* Floating Support Button */
+.support-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  background:#00aaff;
+  padding:14px 20px;
+  border-radius:50px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  color:#000;
+  cursor:pointer;
+  box-shadow:0 0 12px #00aaff;
+  z-index:9999;
+  transition:.2s;
+}
+
+.support-btn:hover{
+  background:#0088dd;
+  box-shadow:0 0 20px #00aaff;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:70px;
+  padding:60px 25px;
+  background:#01040a;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+.footer-logo{
+  width:80px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 0 10px #00aaff);
+}
+
+.footer h3{
+  font-size:26px;
+  margin-bottom:10px;
+  color:#00aaff;
+}
+
+.footer-links{
+  margin-top:20px;
+}
+
+.footer-links a{
+  margin:0 12px;
+  text-decoration:none;
+  color:#fff;
+  opacity:0.7;
+  transition:.3s;
+}
+
+.footer-links a:hover{
+  opacity:1;
+  color:#00aaff;
+}
+
+.social-icons i{
+  font-size:22px;
+  margin:0 10px;
+  margin-top:20px;
+  color:#00aaff;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.social-icons i:hover{
+  transform:scale(1.2);
+}
+
+@media(max-width:900px){
+  .navbar{padding:15px 25px;}
+  .nav-links{display:none;}
+  .menu-icon{display:block;}
+  .hero-title{font-size:42px;}
+  .hero-desc{font-size:16px;}
+  .login-btn{display:none;}   /* Hides login button on mobile */
+}
+/* MOBILE VIEW */
+@media (max-width: 900px) {
+
+  /* Navbar */
+  .navbar {
+    padding: 15px 25px;
+  }
+
+  /* Hide desktop menu */
+  .nav-links {
+    display: none;
+  }
+
+  /* Show mobile menu icon */
+  .menu-icon {
+    display: block;
+  }
+
+  /* Hide login button */
+  .login-btn {
+    display: none;
+  }
+
+  /* Hero section adjustments */
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+  }
+
+  /* Service grid */
+  .services {
+    padding: 60px 30px;
+  }
+
+  .service-card {
+    padding: 25px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 40px 20px;
+  }
+
+  .footer-links a {
+    display: inline-block;
+    margin: 8px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+  <div class="logo">
+    <img src="logo1.webp" class="logo-icon"> STACKLY
+  </div>
+
+  <div class="nav-links">
+    
+    <!-- HOME WITH DROPDOWN -->
+    <div class="dropdown">
+      <a href="index.html" class="drop-btn">Home</a>
+      <div class="dropdown-content">
+        <a href="home2.html">Home 2</a>
+      </div>
+    </div>
+
+    <a href="solution.html">Solution</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="Contact.html">Contact</a>
+  </div>
+
+  <i class="fa-solid fa-bars menu-icon" id="openMenu"></i>
+  <button class="login-btn" onclick="location.href='login.html'">LOGIN</button>
+
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <i class="fa-solid fa-xmark close-btn" id="closeMenu"></i>
+
+  <br><br>
+
+  <!-- Home with expandable submenu -->
+  <div class="mobile-dropdown">
+    <a href="#" class="mobile-link" id="homeToggle">Home <i class="fa-solid fa-chevron-down"></i></a>
+    <div class="mobile-submenu" id="homeSubmenu" style="display:none; margin-left:15px;">
+      <a href="home2.html" class="mobile-link">Home 2</a>
+    </div>
+  </div>
+
+  <a href="solution.html" class="mobile-link">Solution</a>
+  <a href="services.html" class="mobile-link">Services</a>
+  <a href="Dashboard.html" class="mobile-link">Dashboard</a>
+  <a href="Contact.html" class="mobile-link">Contact</a>
+  <a href="login.html" class="mobile-link">Login</a>
+</div>
+
+
+<!-- HERO -->
+<div class="hero" style="background-image:url('cyber.webp');">
+  <div class="hero-content">
+    <h1 class="hero-title">Stackly Cyber Security</h1>
+    <p class="hero-desc">
+      Trusted security experts offering deep-dive threat analysis, data protection & advanced cyber intelligence.
+    </p>
+    <button class="cta-btn" onclick="location.href='solution.html'">
+  Explore Solutions
+</button>
+
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2 class="section-title">Our Cyber Security Services</h2>
+
+  <div class="service-grid">
+
+    <div class="service-card">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3>Threat Monitoring</h3>
+      <p>24/7 real-time security and vulnerability tracking.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-user-secret"></i>
+      <h3>Penetration Testing</h3>
+      <p>Ethical hacking to identify system weaknesses.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-lock"></i>
+      <h3>Data Protection</h3>
+      <p>Enterprise-grade data encryption and privacy solutions.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-brain"></i>
+      <h3>AI-Powered Analysis</h3>
+      <p>Machine-learning threat prediction & prevention.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-cloud-shield"></i>
+      <h3>Cloud Security</h3>
+      <p>Protect business-critical cloud infrastructure.</p>
+    </div>
+
+    <div class="service-card">
+      <i class="fa-solid fa-key"></i>
+      <h3>Zero Trust Systems</h3>
+      <p>Next-gen authentication and identity protection.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FLOATING SUPPORT BUTTON -->
+<div class="support-btn" id="supportBtn">
+  <i class="fa-solid fa-headset"></i> Support
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <img src="logo1.webp" class="footer-logo">
+  <h3>STACKLY Cyber Security</h3>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="home2.html">Home2</a>
+    <a href="Solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard,html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">login</a>
+  </div>
+
+  <div class="social-icons">
+    <a href="404.html"><i class="fab fa-facebook"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin"></i></a>
+  </div>
+
+  <p style="margin-top:25px; opacity:0.5;">
+    © 2025 STACKLY — All Rights Reserved
+  </p>
+</div>
+
+<script>
+// Sticky navbar effect
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".navbar");
+  nav.style.background = window.scrollY > 30 
+    ? "rgba(0,0,0,0.75)" 
+    : "rgba(0,0,0,0.35)";
+});
+// Mobile menu actions
+const openMenu = document.getElementById("openMenu");
+const closeMenu = document.getElementById("closeMenu");
+const mobileMenu = document.getElementById("mobileMenu");
+
+openMenu.addEventListener("click", () => {
+  mobileMenu.classList.add("active");
+});
+
+closeMenu.addEventListener("click", () => {
+  mobileMenu.classList.remove("active");
+});
+
+// Toggle Home submenu
+const homeToggle = document.getElementById("homeToggle");
+const homeSubmenu = document.getElementById("homeSubmenu");
+
+homeToggle.addEventListener("click", (e) => {
+  e.preventDefault(); // Prevent navigation
+  if(homeSubmenu.style.display === "none") {
+    homeSubmenu.style.display = "block";
+  } else {
+    homeSubmenu.style.display = "none";
+  }
+});
+document.getElementById("supportBtn").addEventListener("click", function () {
+      window.location.href = "404.html";   // Redirect to 404 page
+  });
+</script>
+
+</body>
+</html>

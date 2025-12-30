@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stackly Cyber Security</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<!-- CHART JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+body{background:#000; color:#fff; overflow-x:hidden;}
+
+header {
+    width:100%;
+    padding:18px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0, 0, 0, 0.6);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    backdrop-filter:blur(10px);
+}
+
+/* LEFT SECTION */
+.header-left {
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.header-left img {
+    height:42px;
+}
+
+.brand-name {
+    font-size:22px;
+    font-weight:700;
+    color:#ffffff;
+    letter-spacing:1px;
+}
+
+/* CENTER MENU */
+nav ul {
+    display:flex;
+    list-style:none;
+    gap:45px;
+}
+
+nav ul li a {
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover {
+    color:#00c8ff;
+}
+
+/* RIGHT BUTTON */
+.login-btn {
+    padding:7px 18px;
+    background:#00a8ff;
+    border-radius:10px;
+    color:#000;
+    font-weight:600;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.login-btn:hover {
+    background:#1ec7ff;
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+.mobile-menu-btn {
+    display:none;
+    font-size:26px;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* MOBILE MENU FULLSCREEN STYLE */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 9999;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+}
+
+.mobile-menu a {
+    color: #fff;
+    font-size: 32px;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    width: 60%;
+    text-align: center;
+    padding: 12px 0;
+    transition: 0.3s;
+}
+
+.mobile-menu a:hover {
+    color: #00c8ff;
+    border-bottom-color: #00c8ff;
+}
+
+.mobile-menu .close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.mobile-menu .close-btn:hover {
+    color: #00c8ff;
+}
+
+.mobile-menu .close-btn {
+    position:absolute;
+    top:25px;
+    right:25px;
+    font-size:30px;
+    cursor:pointer;
+    color:#fff;
+}
+
+@media(max-width:768px){
+    nav ul, .login-btn { display:none; }
+    .mobile-menu-btn { display:block; }
+}
+
+/* HERO & SECTIONS */
+.hero{min-height:100vh; display:flex; justify-content:center; align-items:center; text-align:center; padding:0 15px; position:relative;}
+.hero::before{content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:url('dash.webp') center/cover no-repeat; filter:brightness(0.4); z-index:-1;}
+.hero-box{border:2px solid rgba(255,255,255,0.4); padding:40px 60px; border-radius:12px; backdrop-filter:blur(6px);}
+.hero-box h1{font-size:55px; margin-bottom:10px;}
+.hero-box p{font-size:18px; opacity:0.9;}
+
+.section{padding:90px 60px; text-align:center;}
+.section h2{font-size:40px; margin-bottom:30px;}
+
+.features{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:30px;}
+.feature-box{background:#0a0a0a; border:1px solid #111; padding:25px; border-radius:12px; transition:0.3s;}
+.feature-box:hover{transform:translateY(-6px); border-color:#00c8ff;}
+.feature-box i{font-size:40px; color:#00c8ff; margin-bottom:15px;}
+
+.dashboard-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(320px,1fr)); gap:30px; margin-top:40px;}
+
+.stat-card{background:#0d0d0d; border:1px solid #111; padding:25px; border-radius:14px;}
+.stat-title{font-size:18px; opacity:0.8;}
+.stat-value{font-size:36px; margin-top:5px; color:#00c8ff; font-weight:600;}
+.stat-desc{font-size:14px; opacity:0.7;}
+
+.meter-box{background:#0d0d0d; padding:25px; border-radius:14px; border:1px solid #111;}
+.meter-bar{width:100%; height:18px; background:#222; border-radius:20px; overflow:hidden;}
+.meter-fill{height:100%; width:72%; background:#ff3c3c; border-radius:20px; animation:meterAnim 3s ease-out forwards;}
+@keyframes meterAnim{from{width:0;} to{width:72%;}}
+
+.log-box{background:#0d0d0d; border:1px solid #111; padding:25px; border-radius:14px; text-align:left;}
+.log-entry{padding:10px 0; border-bottom:1px solid #1a1a1a; font-size:14px; opacity:0.8;}
+.log-entry:last-child{border:none;}
+
+.chart-box{
+  background:#0d0d0d;
+  border:1px solid #111;
+  padding:25px;
+  border-radius:14px;
+}
+
+.stackly-footer {
+    background:#050607;
+    padding:60px 20px;
+    text-align:center;
+    margin-top:50px;
+}
+
+.stackly-footer .footer-logo img {
+    width:65px;
+    margin-bottom:20px;
+}
+
+.stackly-footer h2 {
+    color:#1da1f2;
+    font-size:28px;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.footer-menu {
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin:20px 0;
+    padding:0;
+}
+
+.footer-menu li a {
+    text-decoration:none;
+    color:#dcdcdc;
+    font-weight:400;
+    transition:0.3s;
+}
+
+.footer-menu li a:hover {
+    color:#1da1f2;
+}
+
+.footer-social {
+    margin-top:15px;
+}
+
+.footer-social a {
+    color:#dcdcdc;
+    font-size:22px;
+    margin:0 10px;
+    transition:0.3s;
+}
+
+.footer-social a:hover {
+    color:#1da1f2;
+}
+
+.stackly-footer .copyright {
+    margin-top:25px;
+    color:#888;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+  header{padding:15px 25px;}
+  .hero-box h1{font-size:38px;}
+}
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 25px;
+    }
+
+    .hero-box {
+        padding: 25px 20px;
+    }
+
+    .hero-box h1 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .hero-box p {
+        font-size: 16px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .feature-box {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stat-card, .meter-box, .log-box, .chart-box {
+        padding: 20px;
+    }
+
+    .stackly-footer {
+        padding: 40px 15px;
+    }
+
+    .footer-menu {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .footer-social a {
+        margin: 0 8px;
+        font-size: 20px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <img src="logo1.webp" alt="logo">
+    <span class="brand-name">STACKLY</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="solution.html">Solution</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <a class="login-btn" href="login.html">LOGIN</a>
+
+  <!-- Mobile menu button -->
+  <i class="fas fa-bars mobile-menu-btn"></i>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+    <i class="fas fa-times close-btn"></i>
+    <a href="index.html">Home</a>
+    <a href="solution.html">Solution</a>
+    <a href="services.html">Services</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+</div>
+
+<section class="hero">
+  <div class="hero-box">
+    <h1>Stackly Cyber Security</h1>
+    <p>Trusted security experts offering deep-dive threat analysis, monitoring, and protection.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Our Cyber Security Features</h2>
+  <div class="features">
+    <div class="feature-box"><i class="fas fa-shield-alt"></i><h3>Threat Protection</h3><p>Real-time detection & removal of cyber threats.</p></div>
+    <div class="feature-box"><i class="fas fa-lock"></i><h3>Data Encryption</h3><p>Advanced encryption keeps data fully secure.</p></div>
+    <div class="feature-box"><i class="fas fa-user-secret"></i><h3>24/7 Monitoring</h3><p>Continuous surveillance & risk alerts.</p></div>
+    <div class="feature-box"><i class="fas fa-network-wired"></i><h3>Network Defense</h3><p>Protect infrastructure from intrusions.</p></div>
+  </div>
+</section>
+
+<!-- DASHBOARD SECTION -->
+<section class="section" id="dashboard">
+  <h2>Security Dashboard</h2>
+
+  <!-- STATS -->
+  <div class="dashboard-grid">
+    <div class="stat-card"><div class="stat-title">Active Threats</div><div class="stat-value">27</div><div class="stat-desc">Updated 2 min ago</div></div>
+    <div class="stat-card"><div class="stat-title">Blocked Attacks</div><div class="stat-value">4,921</div><div class="stat-desc">Firewall Defense Score: 98%</div></div>
+    <div class="stat-card"><div class="stat-title">Encrypted Files</div><div class="stat-value">12,840</div><div class="stat-desc">Storage fully protected</div></div>
+    <div class="stat-card"><div class="stat-title">User Logins Today</div><div class="stat-value">143</div><div class="stat-desc">5 unusual login patterns detected</div></div>
+  </div>
+
+  <div class="dashboard-grid" style="margin-top:40px;">
+    <!-- RISK METER -->
+    <div class="meter-box">
+      <h3>System Threat Level</h3>
+      <div class="meter-bar"><div class="meter-fill"></div></div>
+      <p style="margin-top:10px; opacity:0.7;">Current Risk: <b style="color:#ff3c3c;">High (72%)</b></p>
+    </div>
+
+    <!-- SECURITY LOGS -->
+    <div class="log-box">
+      <h3>Recent Security Logs</h3>
+      <div class="log-entry">[09:21] 🔥 Malware Attempt Blocked - IP: 192.26.11.5</div>
+      <div class="log-entry">[09:10] ⚠ Suspicious Login (MFA Failed)</div>
+      <div class="log-entry">[08:39] 🛡 Firewall Auto Rule Triggered</div>
+      <div class="log-entry">[08:22] 🔐 Encryption Backup Completed</div>
+    </div>
+  </div>
+
+  <!-- BAR CHART -->
+  <div class="chart-box" style="margin-top:40px;">
+    <h3 style="margin-bottom:15px;">Threat Analytics (Last 7 Days)</h3>
+    <canvas id="threatChart" height="120"></canvas>
+  </div>
+
+</section>
+
+<footer class="stackly-footer">
+    <div class="footer-logo">
+        <img src="logo1.webp" alt="logo">
+    </div>
+
+    <h2>STACKLY Cyber Security</h2>
+
+    <ul class="footer-menu">
+        <li><a href="index.html">Home</a></li>
+       <li><a href="home2.html">Home2</a></li>
+        <li><a href="Solutions.html">Solutions</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="login.html">login</a></li>
+    </ul>
+
+    <div class="footer-social">
+        <a href="404.html"><i class="fab fa-facebook"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <p class="copyright">© 2025 STACKLY — All Rights Reserved</p>
+</footer>
+
+<!-- BAR CHART SCRIPT -->
+<script>
+const ctx = document.getElementById('threatChart').getContext('2d');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets: [{
+      label: 'Detected Threats',
+      data: [32, 45, 28, 60, 50, 42, 39],
+      backgroundColor: '#00c8ff88',
+      borderColor: '#00c8ff',
+      borderWidth: 2,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { color: '#fff' } }
+    },
+    scales: {
+      x: { ticks: { color: '#ccc' }, grid: { color: '#222' } },
+      y: { ticks: { color: '#ccc' }, grid: { color: '#222' } }
+    }
+  }
+});
+
+// MOBILE MENU SCRIPT
+const mobileBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const closeBtn = document.querySelector('.mobile-menu .close-btn');
+
+mobileBtn.addEventListener('click', ()=> {
+    mobileMenu.style.transform = 'translateY(0)';
+});
+
+closeBtn.addEventListener('click', ()=> {
+    mobileMenu.style.transform = 'translateY(-100%)';
+});
+</script>
+
+</body>
+</html>

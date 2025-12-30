@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STACKLY — Cyber Security Solutions</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+body{
+  background:#04070f;
+  color:#fff;
+}
+
+/* ===========================
+   PREMIUM CYBER HEADER
+=========================== */
+
+.header{
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:1000;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:18px 0;
+}
+
+.header-container{
+  width:90%;
+  max-width:1500px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* LOGO */
+.header-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:26px;
+  font-weight:700;
+}
+.header-logo img{
+  height:42px;
+  filter:drop-shadow(0 0 6px #00aaff);
+}
+
+/* CENTER NAV LINKS */
+.header-nav{
+  display:flex;
+  gap:42px;
+}
+.header-nav a{
+  text-decoration:none;
+  color:#fff;
+  font-size:17px;
+  font-weight:500;
+  transition:0.25s;
+}
+.header-nav a:hover,
+.header-nav a.active{
+  color:#33bbff;
+  text-shadow:0 0 10px #00aaff;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+  background:#00aaff;
+  padding:7px 18px;
+  border-radius:10px;
+  color:#000;
+  font-weight:600;
+  text-decoration:none;
+  transition:.25s;
+}
+
+.login-btn:hover {
+  background:#33c7ff;
+  box-shadow:0 0 12px #00aaff;
+}
+
+
+/* MOBILE ICON */
+.mobile-menu-icon{
+  display:none;
+  color:#fff;
+  font-size:28px;
+  cursor:pointer;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:900px){
+  .header-nav{ display:none; }
+  .header-login{ display:none; }
+  .mobile-menu-icon{ display:block; }
+  .header-container{ padding:0 20px; }
+}
+
+
+/* MOBILE MENU */
+/* ============================
+   MOBILE MENU (PREMIUM STYLE)
+============================ */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(18px);
+  padding: 40px 35px;
+  transition: 0.35s ease-in-out;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.close-btn {
+  font-size: 32px;
+  color: #fff;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 35px;
+}
+
+/* Menu Links Matching Screenshot */
+.mobile-menu a {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  letter-spacing: 0.3px;
+  transition: 0.3s ease;
+}
+
+.mobile-menu a:hover {
+  color: #00aaff;
+  text-shadow: 0 0 12px #00aaff;
+}
+
+/* Hide login on mobile */
+@media(max-width:900px){
+  .header-login { display: none !important; }
+}
+
+/* HERO */
+.hero{
+  width:100%;
+  height:90vh;
+  background:url('anime.webp') center/cover no-repeat fixed;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:100px;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.65);
+}
+.hero-content{
+  position:relative;
+  z-index:10;
+  max-width:900px;
+}
+.hero h1{
+  font-size:58px;
+  font-weight:800;
+  text-shadow:0 0 10px #00aaff;
+}
+.hero p{
+  font-size:18px;
+  margin-top:10px;
+  opacity:0.85;
+}
+
+/* SOLUTIONS SECTION */
+.solutions{
+  padding:80px 70px;
+}
+.section-title{
+  text-align:center;
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:40px;
+}
+.solution-box{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+.card{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:15px;
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,0.1);
+  transition:0.3s;
+}
+.card:hover{
+  background:rgba(0,170,255,0.15);
+  transform:translateY(-6px);
+  box-shadow:0 0 20px #009ce8;
+}
+.card i{
+  font-size:38px;
+  margin-bottom:15px;
+  color:#00aaff;
+}
+
+/* EXTRA FEATURES WITH ANIME BG */
+.extras{
+  padding:90px 40px;
+  background:url('anime-bg2.jpg') center/cover fixed no-repeat;
+  position:relative;
+}
+
+.extras::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.75);
+  backdrop-filter:blur(4px);
+}
+
+.extras-content{
+  position:relative;
+  z-index:10;
+  max-width:1100px;
+  margin:auto;
+}
+
+.extras h2{
+  text-align:center;
+  font-size:38px;
+  margin-bottom:30px;
+  text-shadow:0 0 10px #00aaff;
+}
+
+/* Glow Feature Cards */
+.extra-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.feature-card{
+  background:rgba(255,255,255,0.06);
+  border-left:4px solid #00aaff;
+  padding:25px;
+  border-radius:15px;
+  transition:0.3s;
+  backdrop-filter:blur(6px);
+}
+.feature-card:hover{
+  background:rgba(0,170,255,0.15);
+  transform:translateY(-5px);
+  box-shadow:0 0 15px #009ad7;
+}
+
+/* ===========================
+   CYBER FOOTER
+=========================== */
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 60px 20px;
+  background: #070a12;
+  position: relative;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo-box {
+  width: 85px;
+  height: 85px;
+  background: rgba(0, 132, 255, 0.12);
+  border-radius: 12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 0 18px #00aaff;
+  margin-bottom: 15px;
+}
+
+.footer-logo-box img {
+  width: 70%;
+  filter: drop-shadow(0 0 6px #00c3ff);
+}
+
+.footer h2 {
+  color: #00aaff;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.footer-links a {
+  color: #d1d1d1;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00aaff;
+  text-shadow: 0 0 10px #00aaff;
+}
+
+.footer-social {
+  margin-bottom: 25px;
+}
+
+.footer-social i {
+  color: #00aaff;
+  font-size: 22px;
+  margin: 0 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-social i:hover {
+  color: #fff;
+  text-shadow: 0 0 12px #00c3ff;
+}
+
+.footer-copy {
+  color: #999;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+/* SUPPORT BUTTON */
+.support-btn {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  background: #00aaff;
+  padding: 12px 22px;
+  border-radius: 50px;
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 18px #00aaff;
+  transition: 0.3s;
+}
+
+.support-btn:hover {
+  background: #39c8ff;
+  box-shadow: 0 0 25px #00aaff;
+}
+
+/* MOBILE FULLY RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .support-btn {
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 18px;
+  }
+}
+/* ============================================
+   FULL MOBILE RESPONSIVE MEDIA QUERIES
+============================================ */
+
+/* 900px — Tablets & Large Phones */
+@media (max-width: 900px) {
+
+    .hero h1 {
+        font-size: 42px;
+        line-height: 52px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .solutions {
+        padding: 60px 30px;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+
+    .solution-box {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .extra-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 768px — Standard Mobile Screens */
+@media (max-width: 768px) {
+
+    .hero {
+        height: 70vh;
+        padding-top: 120px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .solutions {
+        padding: 50px 25px;
+    }
+
+    .solution-box {
+        grid-template-columns: 1fr;
+    }
+
+    .extra-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        font-size: 16px;
+        padding: 20px;
+    }
+
+    .support-btn {
+        right: 20px;
+        bottom: 25px;
+        padding: 10px 18px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+/* 600px — Small Phones */
+@media (max-width: 600px) {
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .feature-card {
+        padding: 18px;
+    }
+}
+
+/* 480px — Extra Small Phones */
+@media (max-width: 480px) {
+
+    .hero {
+        height: 65vh;
+        padding-top: 140px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    .footer-copy {
+        font-size: 12px;
+    }
+
+    .support-btn {
+        bottom: 18px;
+        right: 18px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<!-- HEADER -->
+<header class="header">
+  <div class="header-container">
+
+    <!-- LEFT: LOGO -->
+    <div class="header-logo">
+      <img src="logo1.webp" alt="Stackly Logo">
+      <span>STACKLY</span>
+    </div>
+
+    <!-- CENTER: NAV LINKS -->
+    <nav class="header-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="solution.html">Solution</a>
+      <a href="services.html">Services</a>
+      <a href="Dashboard.html">Dashboard</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- RIGHT: LOGIN BUTTON -->
+    <div class="header-login">
+      <a class="login-btn" href="#">LOGIN</a>
+    </div>
+
+    <!-- MOBILE MENU ICON -->
+    <i class="fa-solid fa-bars mobile-menu-icon" id="openMenu"></i>
+
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <i class="fa-solid fa-xmark close-btn" id="closeMenu"></i>
+  <br><br>
+  <a href="index.html">Home</a>
+  <a href="Solutions.html">Solutions</a>
+  <a href="services.html">Services</a>
+  <a href="Dashboard.html">Dashboard</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Cyber Security Solutions</h1>
+    <p>AI-powered protection for businesses, cloud systems and enterprise security.</p>
+  </div>
+</div>
+
+<!-- SOLUTIONS SECTION -->
+<section class="solutions">
+  <h2 class="section-title">Our Solutions</h2>
+
+  <div class="solution-box">
+
+    <div class="card">
+      <i class="fa-solid fa-shield-halved"></i>
+      <h3>Firewall + Zero Trust</h3>
+      <p>Advanced threat blocking & identity-based security.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-user-secret"></i>
+      <h3>Attack Surface Monitoring</h3>
+      <p>Real-time scanning of exposed assets & vulnerabilities.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-sitemap"></i>
+      <h3>Cloud Security</h3>
+      <p>End-to-end cloud system protection with AI analytics.</p>
+    </div>
+
+    <div class="card">
+      <i class="fa-solid fa-database"></i>
+      <h3>Data Leakage Prevention</h3>
+      <p>Encryption, access control & real-time policy monitoring.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXTRA FEATURES WITH ANIME BACKGROUND -->
+<section class="extras">
+  <div class="extras-content">
+    <h2>Extra Premium Features</h2>
+
+    <div class="extra-cards">
+
+      <div class="feature-card">✔️ AI-based Threat Prediction</div>
+      <div class="feature-card">✔️ Real-time Malware Sandbox Testing</div>
+      <div class="feature-card">✔️ SOC Automation & Alert Triage</div>
+      <div class="feature-card">✔️ Cloud Access Monitoring</div>
+      <div class="feature-card">✔️ Intrusion Detection Alerts</div>
+      <div class="feature-card">✔️ Security Reports with PDF Export</div>
+      <div class="feature-card">✔️ Dark-Web Credential Monitoring</div>
+      <div class="feature-card">✔️ Device Compliance Tracking</div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="footer-logo">
+    <div class="footer-logo-box">
+      <img src="logo1.webp" alt="Stackly Logo">
+    </div>
+    <h2>STACKLY Cyber Security</h2>
+  </div>
+
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="home2.html">Home2</a>
+    <a href="Solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="Dashboard.html">Dashboard</a>
+    <a href="Contact.html">Contact</a>
+    <a href="login.html">login</a>
+  </div>
+
+  <div class="footer-social">
+    <a href="404.html"><i class="fab fa-facebook"></i></a>
+        <a href="404.html"><i class="fab fa-instagram"></i></a>
+        <a href="404.html"><i class="fab fa-twitter"></i></a>
+        <a href="404.html"><i class="fab fa-linkedin"></i></a>
+  </div>
+
+  <p class="footer-copy">© 2025 STACKLY — All Rights Reserved</p>
+
+  <!-- SUPPORT BUTTON -->
+  <a class="support-btn" href="404.html">
+    <i class="fas fa-headset"></i> Support
+  </a>
+
+</footer>
+
+<script>
+// Sticky navbar
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".navbar");
+  nav.style.background = window.scrollY > 30 ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.4)";
+});
+
+// Mobile menu toggle
+document.getElementById("openMenu").onclick = () =>
+  document.getElementById("mobileMenu").classList.add("active");
+
+document.getElementById("closeMenu").onclick = () =>
+  document.getElementById("mobileMenu").classList.remove("active");
+</script>
+
+</body>
+</html>
